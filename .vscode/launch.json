@@ -1,0 +1,38 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+     {
+            "name": "form_register_diversition sandbox [ios]",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "deviceId": "B2BFD9E3-34F3-4D29-8D27-7052435CD8CD",
+            "toolArgs": [
+                "fvm flutter"
+            ]
+        },
+        {
+            "name": "form_register_diversition sandbox [android]",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "deviceId": "emulator-5554",
+            "toolArgs": [
+                "fvm flutter"
+            ]
+        },
+        {
+            "name": "form_register_diversition sandbox [hot 50 pro+]",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "deviceId": "13195704B1002676",
+            "toolArgs": [
+                "fvm flutter"
+            ]
+        }
+    ]
+}
