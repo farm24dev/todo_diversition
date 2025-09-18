@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
      {
-            "name": "form_register_diversition sandbox [ios]",
+            "name": "[ios]",
             "request": "launch",
             "type": "dart",
             "flutterMode": "debug",
@@ -15,7 +15,7 @@
             ]
         },
         {
-            "name": "form_register_diversition sandbox [android]",
+            "name": " [android]",
             "request": "launch",
             "type": "dart",
             "flutterMode": "debug",
@@ -25,7 +25,7 @@
             ]
         },
         {
-            "name": "form_register_diversition sandbox [hot 50 pro+]",
+            "name": "[hot 50 pro+]",
             "request": "launch",
             "type": "dart",
             "flutterMode": "debug",

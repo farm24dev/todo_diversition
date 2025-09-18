@@ -117,24 +117,25 @@ class _ActionTaskModalContent extends StatelessWidget {
             ),
           ),
           SizedBox.shrink(),
-          ButtonCustom(
-            height: 40,
-            width: double.infinity,
-            text: 'Task Done',
-            backgroundColor: Colours.primary.withOpacity(0.7),
-            onPressed: () async {
-              bool? isConfirm = await AppDialogs.confirm(
-                message: 'ต้องการบันทึกข้อมูลใช่หรือไม่?',
-                context,
-              );
-              if (isConfirm == null || !isConfirm) return;
+          if (todo?.status == 'todo')
+            ButtonCustom(
+              height: 40,
+              width: double.infinity,
+              text: 'Task Done',
+              backgroundColor: Colours.primary.withOpacity(0.7),
+              onPressed: () async {
+                bool? isConfirm = await AppDialogs.confirm(
+                  message: 'ต้องการบันทึกข้อมูลใช่หรือไม่?',
+                  context,
+                );
+                if (isConfirm == null || !isConfirm) return;
 
-              final Map<String, dynamic> updateData = {'status': 'done'};
-              context.read<UpdateTodoBloc>().add(
-                UpdateTodoRequestEvent(id: todo?.id ?? '', data: updateData),
-              );
-            },
-          ),
+                final Map<String, dynamic> updateData = {'status': 'done'};
+                context.read<UpdateTodoBloc>().add(
+                  UpdateTodoRequestEvent(id: todo?.id ?? '', data: updateData),
+                );
+              },
+            ),
           ButtonCustom(
             height: 40,
             width: double.infinity,
