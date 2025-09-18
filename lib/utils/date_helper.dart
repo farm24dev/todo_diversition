@@ -18,4 +18,12 @@ class DateHelper {
     final String formatted = formatter.format(dateTime);
     return formatted;
   }
+
+  static time(int? input) {
+    if (input == null) return '00:00';
+    final DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(input);
+    final DateFormat formatter = DateFormat('HH:mm');
+    final String formatted = formatter.format(dateTime);
+    return formatted;
+  }
 }

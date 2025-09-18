@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:todo_diversition/constants/colours.dart';
 
-enum TaskStatusType { todo, inprogress, done }
+enum TaskStatusType { todo, done, unknown }
 
-extension TaskColorExtension on TaskStatusType {
-  static fromString(String value) {
+extension TaskStatusTypeExtension on TaskStatusType {
+  static TaskStatusType fromString(String? value) {
+    if (value == null) return TaskStatusType.unknown;
     switch (value.toLowerCase()) {
       case 'todo':
         return TaskStatusType.todo;
-      case 'inprogress':
-        return TaskStatusType.inprogress;
       case 'done':
         return TaskStatusType.done;
       default:
-        return TaskStatusType.todo;
+        return TaskStatusType.unknown;
     }
   }
 
@@ -21,21 +20,21 @@ extension TaskColorExtension on TaskStatusType {
     switch (this) {
       case TaskStatusType.todo:
         return 'To Do';
-      case TaskStatusType.inprogress:
-        return 'In Progress';
       case TaskStatusType.done:
         return 'Done';
+      case TaskStatusType.unknown:
+        return 'Unknown';
     }
   }
 
   Color get color {
     switch (this) {
       case TaskStatusType.todo:
-        return Colours.red;
-      case TaskStatusType.inprogress:
         return Colours.blue;
       case TaskStatusType.done:
         return Colours.green;
+      case TaskStatusType.unknown:
+        return Colours.grey;
     }
   }
 }

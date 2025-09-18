@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_diversition/constants/app_text_styles.dart';
 import 'package:todo_diversition/constants/colours.dart';
-import 'package:todo_diversition/presentations/home/blocs/bloc/get_todo_list_bloc.dart';
+import 'package:todo_diversition/presentations/home/blocs/get_todo_list_bloc/get_todo_list_bloc.dart';
 import 'package:todo_diversition/presentations/home/pages/add_task_page.dart';
 import 'package:todo_diversition/presentations/home/providers/todo_list_provider.dart';
 import 'package:todo_diversition/presentations/home/widgets/todo_list.dart';
@@ -23,7 +23,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    context.read<GetTodoListBloc>().add(GetTodoListRequestEvent());
+    context.read<GetTodoListBloc>().add(
+      GetTodoListRequestEvent(date: DateTime.now().millisecondsSinceEpoch),
+    );
   }
 
   @override

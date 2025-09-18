@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_diversition/core/locator.dart';
 import 'package:todo_diversition/data/repositories/todo_repository.dart';
-import 'package:todo_diversition/presentations/home/blocs/bloc/get_todo_list_bloc.dart';
+import 'package:todo_diversition/presentations/home/blocs/get_todo_list_bloc/get_todo_list_bloc.dart';
 import 'package:todo_diversition/presentations/home/providers/todo_list_provider.dart';
 import 'package:todo_diversition/presentations/landing/pages/landing_page.dart';
 

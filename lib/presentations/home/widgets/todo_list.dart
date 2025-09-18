@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_diversition/constants/app_text_styles.dart';
 import 'package:todo_diversition/constants/colours.dart';
-import 'package:todo_diversition/presentations/home/blocs/bloc/get_todo_list_bloc.dart';
+import 'package:todo_diversition/presentations/home/blocs/get_todo_list_bloc/get_todo_list_bloc.dart';
+import 'package:todo_diversition/presentations/home/dialogs/action_task_modal.dart';
 import 'package:todo_diversition/presentations/home/widgets/card_todo_item.dart';
+import 'package:todo_diversition/widgets/button_custom.dart';
 import 'package:todo_diversition/widgets/loading_widget.dart';
 
 class TodoList extends StatelessWidget {
@@ -36,11 +38,26 @@ class TodoList extends StatelessWidget {
             return ListView.separated(
               padding: EdgeInsets.fromLTRB(16, 0, 16, 24),
               physics: BouncingScrollPhysics(),
-              separatorBuilder: (context, index) => const Divider(),
+              separatorBuilder: (context, index) => SizedBox(height: 8),
               itemCount: state.todos.length,
               itemBuilder: (context, index) {
                 final todo = state.todos[index];
-                return CardTodoItem(todo: todo);
+                return CardTodoItem(
+                  todo: todo,
+                  onTap: () async {
+                    final String? res = await ActionTaskModal.show(
+                      context,
+                      todo: todo,
+                    );
+                    if (res == 'success') {
+                      context.read<GetTodoListBloc>().add(
+                        GetTodoListRequestEvent(
+                          date: DateTime.now().millisecondsSinceEpoch,
+                        ),
+                      );
+                    }
+                  },
+                );
               },
             );
         }

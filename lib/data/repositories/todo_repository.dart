@@ -35,16 +35,32 @@ class TodoRepository {
     }
   }
 
-  Future<dynamic> updateTodo(int id, Map<String, dynamic> todo) async {
+  Future<ApiResponseEntity> updateTodo(
+    String id,
+    Map<String, dynamic> todo,
+  ) async {
     try {
       final response = await _dio.put('/api/v1/todos/$id', data: todo);
       if (response.statusCode == 200) {
-        return response.data;
+        return ApiResponseEntity.fromJson(response.data);
       } else {
         throw Exception('Failed to update todo');
       }
     } catch (e) {
       throw Exception('Failed to update todo: $e');
+    }
+  }
+
+  Future<ApiResponseEntity> deleteTodo(String id) async {
+    try {
+      final response = await _dio.delete('/api/v1/todos/$id');
+      if (response.statusCode == 200) {
+        return ApiResponseEntity.fromJson(response.data);
+      } else {
+        throw Exception('Failed to delete todo');
+      }
+    } catch (e) {
+      throw Exception('Failed to delete todo: $e');
     }
   }
 }

@@ -10,17 +10,21 @@ class ButtonCustom extends StatelessWidget {
     this.backgroundColor = Colours.primary,
     this.fontSize,
     this.height,
+    this.width,
   });
   final String? text;
   final VoidCallback? onPressed;
   final Color backgroundColor;
   final double? fontSize;
   final double? height;
+  final double? width;
+
   @override
   Widget build(BuildContext context) {
     final double btnHeight = height ?? 48;
     return SizedBox(
       height: btnHeight,
+      width: width,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
