@@ -163,9 +163,27 @@ class _AddTaskPageState extends State<AddTaskPage> {
                           onTap: () async {
                             final selected = await TimePickerHelper.show(
                               context,
-                              initialTime: provider.startTime,
+                              initialTime: TimeOfDay(hour: 08, minute: 00),
                             );
                             if (selected != null) {
+                              // If end time exists, check if new start time is valid
+                              if (provider.endTime != null) {
+                                final startMinutes =
+                                    selected.hour * 60 + selected.minute;
+                                final endMinutes =
+                                    provider.endTime!.hour * 60 +
+                                    provider.endTime!.minute;
+
+                                if (startMinutes >= endMinutes) {
+                                  // Show error dialog if start time is not before end time
+                                  await AppDialogs.error(
+                                    context,
+                                    message:
+                                        'เวลาเริ่มต้นต้องน้อยกว่าเวลาสิ้นสุด',
+                                  );
+                                  return;
+                                }
+                              }
                               provider.updateSelectedStartTime(
                                 context,
                                 selected,
@@ -192,9 +210,29 @@ class _AddTaskPageState extends State<AddTaskPage> {
                           onTap: () async {
                             final selected = await TimePickerHelper.show(
                               context,
-                              initialTime: provider.startTime,
+                              initialTime:
+                                  provider.startTime ??
+                                  TimeOfDay(hour: 08, minute: 00),
                             );
                             if (selected != null) {
+                              // Check if end time is after start time
+                              if (provider.startTime != null) {
+                                final startMinutes =
+                                    provider.startTime!.hour * 60 +
+                                    provider.startTime!.minute;
+                                final endMinutes =
+                                    selected.hour * 60 + selected.minute;
+
+                                if (endMinutes <= startMinutes) {
+                                  // Show error dialog if end time is not after start time
+                                  await AppDialogs.error(
+                                    context,
+                                    message:
+                                        'เวลาสิ้นสุดต้องมากกว่าเวลาเริ่มต้น',
+                                  );
+                                  return;
+                                }
+                              }
                               provider.updateSelectedEndTime(context, selected);
                             }
                           },

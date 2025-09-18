@@ -94,7 +94,11 @@ class _HomePageState extends State<HomePage> {
 
                               if (value == true) {
                                 context.read<GetTodoListBloc>().add(
-                                  GetTodoListRequestEvent(),
+                                  GetTodoListRequestEvent(
+                                    date: provider
+                                        .selectedDateTimeline
+                                        .millisecondsSinceEpoch,
+                                  ),
                                 );
                               }
                             });

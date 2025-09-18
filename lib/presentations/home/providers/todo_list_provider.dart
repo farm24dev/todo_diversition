@@ -44,6 +44,7 @@ class TodoListProvider extends ChangeNotifier {
   void updateSelectedStartTime(BuildContext context, TimeOfDay selected) {
     log('updateSelectedStartTime -> $selected');
     _startTime = selected;
+    _endTime = null;
     notifyListeners();
   }
 
