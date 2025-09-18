@@ -23,8 +23,11 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+
+    final today = DateTime.now();
+    final dateOnly = DateTime(today.year, today.month, today.day);
     context.read<GetTodoListBloc>().add(
-      GetTodoListRequestEvent(date: DateTime.now().millisecondsSinceEpoch),
+      GetTodoListRequestEvent(date: dateOnly.millisecondsSinceEpoch),
     );
   }
 
@@ -93,11 +96,16 @@ class _HomePageState extends State<HomePage> {
                               log('Back from AddTaskPage value -> $value');
 
                               if (value == true) {
+                                final selectedDate =
+                                    provider.selectedDateTimeline;
+                                final dateOnly = DateTime(
+                                  selectedDate.year,
+                                  selectedDate.month,
+                                  selectedDate.day,
+                                );
                                 context.read<GetTodoListBloc>().add(
                                   GetTodoListRequestEvent(
-                                    date: provider
-                                        .selectedDateTimeline
-                                        .millisecondsSinceEpoch,
+                                    date: dateOnly.millisecondsSinceEpoch,
                                   ),
                                 );
                               }
@@ -117,9 +125,10 @@ class _HomePageState extends State<HomePage> {
                   selectedTextColor: Colors.white,
                   onDateChange: (date) {
                     provider.updateSelectedDateTimeline(date);
+                    final dateOnly = DateTime(date.year, date.month, date.day);
                     context.read<GetTodoListBloc>().add(
                       GetTodoListRequestEvent(
-                        date: date.millisecondsSinceEpoch,
+                        date: dateOnly.millisecondsSinceEpoch,
                       ),
                     );
                   },
