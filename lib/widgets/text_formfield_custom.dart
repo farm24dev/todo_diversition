@@ -12,6 +12,9 @@ class TextFormFieldCustom extends StatelessWidget {
     this.textInputAction,
     this.keyboardType,
     this.inputFormatters,
+    this.suffixIcon,
+    this.readOnly = false,
+    this.onTap,
   });
   final TextEditingController? controller;
   final String? hintText;
@@ -20,6 +23,9 @@ class TextFormFieldCustom extends StatelessWidget {
   final TextInputAction? textInputAction;
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
+  final Widget? suffixIcon;
+  final bool readOnly;
+  final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -43,8 +49,11 @@ class TextFormFieldCustom extends StatelessWidget {
           borderSide: const BorderSide(color: Colours.red, width: 1),
         ),
         hintText: hintText,
+        suffixIcon: suffixIcon,
       ),
       validator: validator,
+      readOnly: readOnly,
+      onTap: onTap,
     );
   }
 
