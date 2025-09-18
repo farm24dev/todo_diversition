@@ -19,3 +19,5 @@ samples, guidance on mobile development, and a full API reference.
 
 
 #fvm dart run build_runner build
+
+#fvm flutter clean && fvm dart run build_runner build --delete-conflicting-outputs && fvm flutter build apk --release 
