@@ -85,6 +85,7 @@ class TodoListProvider extends ChangeNotifier {
   void initialize() {
     log('initialize');
     _selectedDate = _selectedDateTimeline;
+    notifyListeners();
   }
 
   void updateSelectedDateTimeline(DateTime date) {

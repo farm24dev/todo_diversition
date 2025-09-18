@@ -8,9 +8,12 @@ class TodoRepository {
   TodoRepository({required Dio dio}) : _dio = dio;
   final Dio _dio;
 
-  Future<TodoResponseEntity> getTodoList() async {
+  Future<TodoResponseEntity> getTodoList({int? date}) async {
     try {
-      final response = await _dio.get('/api/v1/todos');
+      final response = await _dio.get(
+        '/api/v1/todos',
+        queryParameters: {'date': date},
+      );
       if (response.statusCode == 200) {
         return TodoResponseEntity.fromJson(response.data);
       } else {

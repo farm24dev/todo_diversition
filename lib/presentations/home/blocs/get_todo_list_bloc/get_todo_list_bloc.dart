@@ -21,7 +21,7 @@ class GetTodoListBloc extends Bloc<GetTodoListEvent, GetTodoListState> {
   ) async {
     emit(GetTodoListLoading());
     try {
-      final response = await _repository.getTodoList();
+      final response = await _repository.getTodoList(date: event.date);
       if (response.success == true) {
         emit(GetTodoListSuccess(todos: response.data ?? []));
       } else {

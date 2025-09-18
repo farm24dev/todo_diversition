@@ -75,6 +75,22 @@ class CardTodoItem extends StatelessWidget {
                       ),
                     ],
                   ),
+                  Row(
+                    spacing: 4,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(Icons.calendar_month, size: 16, color: Colours.grey),
+                      Expanded(
+                        child: Text(
+                          DateHelper.date(todo?.date),
+                          style: AppTextStyles.regular.copyWith(
+                            fontSize: 14,
+                            color: Colours.grey,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                   Text(
                     todo?.note ?? '',
                     style: AppTextStyles.regular.copyWith(fontSize: 14),
